@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --font-display: 'DM Sans', system-ui, sans-serif;
+  --font-geist-sans: 'DM Sans', system-ui, sans-serif;
+  --font-geist-mono: 'DM Mono', monospace;
+
+  /* Brand */
+  --color-brand: #6366f1;
+  --color-brand-light: #818cf8;
+  --color-brand-dark: #4f46e5;
+
+  /* Surface */
+  --color-bg: #0b0d14;
+  --color-surface: #111420;
+  --color-surface-2: #191c2e;
+  --color-surface-3: #1f2337;
+  --color-border: rgba(255,255,255,0.08);
+  --color-border-subtle: rgba(255,255,255,0.04);
+
+  /* Text */
+  --color-text: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+}
+
+* {
+  box-sizing: border-box;
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-geist-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+@layer components {
+  /* Cards */
+  .card {
+    @apply bg-[#111420] border border-white/[0.06] rounded-xl;
+  }
+  .card-hover {
+    @apply card transition-all duration-200 hover:border-white/[0.12] hover:bg-[#141828];
+  }
+
+  /* Pill badges */
+  .pill {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  .pill-success { @apply pill bg-emerald-500/15 text-emerald-400; }
+  .pill-warning { @apply pill bg-yellow-500/15 text-yellow-400; }
+  .pill-danger  { @apply pill bg-red-500/15 text-red-400; }
+  .pill-info    { @apply pill bg-blue-500/15 text-blue-400; }
+  .pill-purple  { @apply pill bg-violet-500/15 text-violet-400; }
+  .pill-gray    { @apply pill bg-white/10 text-white/60; }
+
+  /* KPI Card */
+  .kpi-card {
+    @apply card p-5 flex flex-col gap-1;
+  }
+
+  /* Stat number */
+  .stat-value {
+    @apply text-2xl font-semibold text-white tabular-nums;
+  }
+  .stat-label {
+    @apply text-xs text-white/50 uppercase tracking-wider font-medium;
+  }
+
+  /* Table */
+  .data-table {
+    @apply w-full text-sm;
+  }
+  .data-table th {
+    @apply text-left text-xs text-white/40 uppercase tracking-wider font-medium py-2 px-3;
+  }
+  .data-table td {
+    @apply py-3 px-3 border-t border-white/[0.04] text-white/80;
+  }
+  .data-table tr:hover td {
+    @apply bg-white/[0.02];
+  }
+
+  /* Sidebar nav link */
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-white/50 hover:text-white hover:bg-white/[0.06] transition-all duration-150 font-medium;
+  }
+  .nav-link.active {
+    @apply bg-indigo-500/15 text-indigo-300;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition-colors;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/[0.08] hover:bg-white/[0.12] text-white/80 text-sm font-medium transition-colors border border-white/[0.08];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/[0.06] text-sm font-medium transition-colors;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* Score bar */
+.score-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.6s ease-out;
+}
